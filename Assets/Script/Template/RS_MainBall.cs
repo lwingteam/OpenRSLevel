@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class RS_MainBall : MonoBehaviour
 {
+    public float FSpeed = 0f; //向前移动的速度
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +15,7 @@ public class RS_MainBall : MonoBehaviour
     void Update()
     {
         UpdateBallPosX();
+        UpdateBallPosZ();
     }
 
     float GetMouseXPos()    //获取鼠标X坐标
@@ -28,10 +30,15 @@ public class RS_MainBall : MonoBehaviour
         this.gameObject.transform.Translate(Vector3.right * GetBallSpeed() * Time.deltaTime);
     }
 
-    float GetBallSpeed()
+    float GetBallSpeed() //获取球的移动速度
     {
-        float BallSpeed = (GetMouseXPos() - this.transform.position.x) * 11.5f;  //这里的11.5为速度乘数。11.5最接近官方，我认为6左右手感最佳。（这个数值越大越灵敏）
+        float BallSpeed = (GetMouseXPos() - this.transform.position.x) * 11.5f;  //这里的11.5为速度乘数。11.5最接近官方，我认为6左右手感最佳(该数据是对电脑而言，手机可能不同)。（这个数值越大越灵敏）
 
         return BallSpeed;
+    }
+
+    void UpdateBallPosZ() //更新球的Z坐标
+    {
+        this.gameObject.transform.Translate(Vector3.forward * FSpeed * Time.deltaTime);
     }
 }
