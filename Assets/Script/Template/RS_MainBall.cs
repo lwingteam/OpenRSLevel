@@ -24,6 +24,14 @@ public class RS_MainBall : MonoBehaviour
 
     void UpdateBallPosX()  //更新球的X坐标
     {
-        this.gameObject.transform.position = new Vector3(GetMouseXPos(), this.gameObject.transform.position.y, this.gameObject.transform.position.z);
+        //this.gameObject.transform.position = new Vector3(GetMouseXPos(), this.gameObject.transform.position.y, this.gameObject.transform.position.z);
+        this.gameObject.transform.Translate(Vector3.right * GetBallSpeed() * Time.deltaTime);
+    }
+
+    float GetBallSpeed()
+    {
+        float BallSpeed = (GetMouseXPos() - this.transform.position.x) * 11.5f;  //这里的11.5为速度乘数。11.5最接近官方，我认为6左右手感最佳。（这个数值越大越灵敏）
+
+        return BallSpeed;
     }
 }
