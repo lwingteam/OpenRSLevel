@@ -2,27 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Newtonsoft.Json;
 using System.IO;
 [Serializable]
 public class Level
 {
-    public string name;
-    public string version;
+    public string name = "null";
+    public string version = "null";
     public List<List<string>> map;
+    public int apiversion = 0;
 }
 public class LevelLoader
 {
-    public Level LoadLevelFromString(string str)
+    public static Level LoadLevelFromString(string str)
     {
-        return new Level();
+        Level result = null;
+        try
+        {
+            result = JsonConvert.DeserializeObject<Level>(str);
+        }
+        catch { }
+        return result;
     }
-    public Level LoadLevelFromFile(string path)
+    public static Level LoadLevelFromFile(string path)
     {
         return LoadLevelFromString(File.ReadAllText(path));
     }
 
-    public string GetLevelDataFromObject(Level obj)
+    public static string GetLevelDataFromObject(Level obj)
     {
-        return "";
+        return JsonConvert.SerializeObject(obj);
     }
 }
