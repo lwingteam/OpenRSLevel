@@ -11,6 +11,7 @@ public class Level
     public string version = "null";
     public List<List<string>> map;
     public int apiversion = 0;
+    public string author = "null";
 }
 public class LevelLoader
 {
