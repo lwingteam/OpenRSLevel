@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 public class LevelsListController : MonoBehaviour
 {
     List<Level> levelsCache = new List<Level>();
+    public GameObject ItemTemplate;
+    List<LevelsListItem> Items = new List<LevelsListItem>();
+    public GameObject Viewport;
     void Start()
     {
         reload().GetAwaiter().OnCompleted(() =>
@@ -35,7 +38,11 @@ public class LevelsListController : MonoBehaviour
     }
     void renderList()
     {
-
+        for (int i = 0; i < levelsCache.Count; i++)
+        {
+            GameObject item = Instantiate(ItemTemplate, Viewport.transform);
+            item.GetComponent<LevelsListItem>().render(levelsCache[i]);
+        }
     }
     void clearCache()
     {
