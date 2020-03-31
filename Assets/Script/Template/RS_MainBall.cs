@@ -5,15 +5,18 @@ using UnityEngine;
 public class RS_MainBall : MonoBehaviour
 {
     public float FSpeed = 0f; //向前移动的速度
+    public float JumpForce = 1200f; //跳跃的力度
+    private Rigidbody RS_MainBallR = null;
     // Start is called before the first frame update
     void Start()
     {
-        
+        this.RS_MainBallR = this.gameObject.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        Physics.gravity = new Vector3(0, -35, 0);   //加快物体下落速度
         UpdateBallPosX();
         UpdateBallPosZ();
     }
@@ -26,7 +29,6 @@ public class RS_MainBall : MonoBehaviour
 
     void UpdateBallPosX()  //更新球的X坐标
     {
-        //this.gameObject.transform.position = new Vector3(GetMouseXPos(), this.gameObject.transform.position.y, this.gameObject.transform.position.z);
         this.gameObject.transform.Translate(Vector3.right * GetBallSpeed() * Time.deltaTime);
     }
 
@@ -40,5 +42,10 @@ public class RS_MainBall : MonoBehaviour
     void UpdateBallPosZ() //更新球的Z坐标
     {
         this.gameObject.transform.Translate(Vector3.forward * FSpeed * Time.deltaTime);
+    }
+
+    void BallJump() //跳跃
+    {
+        this.RS_MainBallR.velocity = new Vector3(this.RS_MainBallR.velocity.x, JumpForce, this.RS_MainBallR.velocity.z);
     }
 }
