@@ -1095,6 +1095,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 537a2d748cd459a48ace588b20ea0570, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemTemplate: {fileID: 152204271171590332, guid: 64336f8a42f1d5d46848113bf4c5d436,
+    type: 3}
+  Viewport: {fileID: 1297556953}
 --- !u!1 &980811054
 GameObject:
   m_ObjectHideFlags: 0
@@ -1406,8 +1409,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1392302521}
   m_HandleRect: {fileID: 1392302520}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.83717126
+  m_Value: 0.98335433
+  m_Size: 0.923253
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2016,8 +2019,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 630}
+  m_AnchoredPosition: {x: 0, y: 0.61248416}
+  m_SizeDelta: {x: 0, y: 479.44}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1297556955
 MonoBehaviour:
@@ -2036,11 +2039,11 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
+  m_ChildAlignment: 1
   m_Spacing: 0
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 0
+  m_ChildControlWidth: 1
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0

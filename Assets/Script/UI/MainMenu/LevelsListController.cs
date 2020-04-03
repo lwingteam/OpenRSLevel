@@ -10,31 +10,33 @@ public class LevelsListController : MonoBehaviour
     public GameObject ItemTemplate;
     List<LevelsListItem> Items = new List<LevelsListItem>();
     public GameObject Viewport;
+    private static string datapath;
     void Start()
     {
-        reload().GetAwaiter().OnCompleted(() =>
+        datapath = FileUtils.PublicDataPath;
+        
+        Task.Run(() =>
         {
+            Debug.Log("Loading Levels List by Task, DataPath=" + datapath);
+            reload();
             renderList();
             clearCache();
         });
     }
-    Task reload()
+    void reload()
     {
-        Task r = new Task(() =>
+        clearCache();
+        foreach (var item in Directory.GetFiles(datapath))
         {
-            clearCache();
-            //扫描关卡文件
-            Debug.Log(FileUtils.PublicDataPath);
-            foreach (var item in Directory.GetFiles(FileUtils.PublicDataPath))
+            if (item.EndsWith(".orlp"))
             {
-                if (item.EndsWith(".orlp"))
+                Level levelobj = LevelLoader.LoadLevelFromFile(item);
+                if (levelobj != null)
                 {
-                    levelsCache.Add(LevelLoader.LoadLevelFromFile(item));
+                    levelsCache.Add(levelobj);
                 }
             }
-        });
-        r.Start();
-        return r;
+        }
     }
     void renderList()
     {
