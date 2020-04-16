@@ -19,7 +19,7 @@ public class RS_MainCamera : MonoBehaviour
         UpdateCameraPosZ();
     }
 
-    void UpdateCameraPosZ() //更新球的Z坐标
+    void UpdateCameraPosZ() //更新摄像机的Z坐标
     {
         this.gameObject.transform.position = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.MainBall.gameObject.transform.position.z - this.BackBallDistance);
     }

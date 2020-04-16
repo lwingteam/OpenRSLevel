@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RS_MainBall : MonoBehaviour
 {
@@ -47,5 +48,16 @@ public class RS_MainBall : MonoBehaviour
     void BallJump() //跳跃
     {
         this.RS_MainBallR.velocity = new Vector3(this.RS_MainBallR.velocity.x, JumpForce, this.RS_MainBallR.velocity.z);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "JumpB")
+            BallJump();
+    }
+
+    void Restart() //重新开始
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
