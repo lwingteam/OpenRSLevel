@@ -4,7 +4,6 @@ using UnityEngine;
 using System;
 using Newtonsoft.Json;
 using System.IO;
-[Serializable]
 public class Level
 {
     public string name = "null";
@@ -22,7 +21,13 @@ public class LevelLoader
         {
             result = JsonConvert.DeserializeObject<Level>(str);
         }
-        catch { }
+        catch {
+            
+        }
+        if(result == null)
+        {
+            Debug.LogError("Error on load level json");
+        }
         return result;
     }
     public static Level LoadLevelFromFile(string path)
